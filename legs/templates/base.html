@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Furniture - Tables Managament System</title>
+</head>
+    <a href="{% url 'hello' %}">Main page</a>
+    <br></br>
+    {% if user.is_authenticated %}
+        <p> Zalogowano: {{ user.username }}</p>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Wyloguj</button>
+        </form>
+    {% else %}
+        <form method="get" action="{% url 'login' %}">
+            {% csrf_token %}
+            <button type="submit">Zaloguj</button>
+        </form>
+    {% endif %}
+    <br>
+    {% block content %}
+    {% endblock %}
+</html>
